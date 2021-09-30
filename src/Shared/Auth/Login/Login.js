@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import './Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import firebase from '../Firebase/Firebase';
-import { AuthContext } from '../../Context/AuthContext';
+import firebase from '../Database/Firebase';
+import { AuthContext } from '../Context/AuthContext';
 import { Redirect } from 'react-router';
 
 function Login({ history }) {
@@ -21,7 +21,7 @@ function Login({ history }) {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((data) => {
         history.push('/admin');
       })
       .catch(() => {

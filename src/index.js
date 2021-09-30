@@ -2,28 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './index.scss';
-import { AuthProvider } from './components/Context/AuthContext';
-import Layout from './components/Layout/Layout';
-import Home from './components/Pages/Home/Home';
-import Admin from './components/Pages/Admin/Admin';
-import NotFound from './components/Pages/NotFound/NotFound';
-import Login from './components/Auth/Login/Login';
-import PrivateRoute from './components/Auth/PrivateRoute';
+import './index.css';
+import { AuthProvider } from './Shared/Auth/Context/AuthContext';
+import Layout from './Shared/Layout/Layout';
+import Admin from './Backend/Admin/Admin';
+import NotFound from './Shared/NotFound/NotFound';
+import Login from './Shared/Auth/Login/Login';
+import AdminRoute from './Shared/Auth/Routes/AdminRoute';
+import Home from './Frontend/Home/Home';
+import ListProducts from './Backend/Products/ListProducts';
+import AddProduct from './Backend/Products/AddProduct';
 
 ReactDOM.render(
   <AuthProvider>
     <React.StrictMode>
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
-            <PrivateRoute path="/admin" component={Admin} />
+            <AdminRoute exact path="/admin" component={Admin} />
+            <AdminRoute path="/admin/products" component={ListProducts} />
+            <AdminRoute path="/admin/product/add" component={AddProduct} />
             <Route path="*" component={NotFound} />
           </Switch>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     </React.StrictMode>
   </AuthProvider>,
   document.getElementById('root')

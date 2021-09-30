@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext } from 'react';
-import firebase from '../Auth/Firebase/Firebase';
+import firebase from '../Database/Firebase';
 
 export const AuthContext = createContext();
 
@@ -13,13 +13,5 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
