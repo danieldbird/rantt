@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import './index.css';
+import './index.scss';
 import { AuthProvider } from './Shared/Auth/Context/AuthContext';
 import Layout from './Shared/Layout/Layout';
 import Admin from './Backend/Admin/Admin';
