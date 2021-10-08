@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './index.scss';
-import { AuthProvider } from './Shared/Auth/Context/AuthContext';
+import { AuthProvider } from './Shared/Context/AuthContext';
 import Layout from './Shared/Layout/Layout';
 import Admin from './Backend/Admin/Admin';
 import NotFound from './Shared/NotFound/NotFound';
@@ -12,23 +12,32 @@ import AdminRoute from './Shared/Auth/Routes/AdminRoute';
 import Home from './Frontend/Home/Home';
 import ListProducts from './Backend/Products/ListProducts';
 import AddProduct from './Backend/Products/AddProduct';
+import ProductsProvider from './Shared/Context/ProductsContext';
+import CartProvider from './Shared/Context/CartContext';
+import Cart from './Frontend/Cart/Cart';
 
 ReactDOM.render(
   <AuthProvider>
-    <React.StrictMode>
-      <Router>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <AdminRoute exact path="/admin" component={Admin} />
-            <AdminRoute path="/admin/products" component={ListProducts} />
-            <AdminRoute path="/admin/product/add" component={AddProduct} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </Layout>
-      </Router>
-    </React.StrictMode>
+    <ProductsProvider>
+      <CartProvider>
+        <React.StrictMode>
+          <Router>
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/cart" component={Cart} />
+                <Route path="/login" component={Login} />
+                <AdminRoute exact path="/admin" component={Admin} />
+                <AdminRoute path="/admin/products" component={ListProducts} />
+                <AdminRoute path="/admin/product/add" component={AddProduct} />
+                <AdminRoute path="/admin/product/edit/:id" component={AddProduct} />
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </Layout>
+          </Router>
+        </React.StrictMode>
+      </CartProvider>
+    </ProductsProvider>
   </AuthProvider>,
   document.getElementById('root')
 );

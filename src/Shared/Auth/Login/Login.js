@@ -3,7 +3,7 @@ import './Login.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import firebase from '../Database/Firebase';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext } from '../../Context/AuthContext';
 import { Redirect } from 'react-router';
 
 function Login({ history }) {
@@ -21,7 +21,7 @@ function Login({ history }) {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((data) => {
+      .then(() => {
         history.push('/admin');
       })
       .catch(() => {
@@ -40,40 +40,37 @@ function Login({ history }) {
   };
 
   return (
-    <div className="login">
+    <div className="login container flex flex-col justify-center items-center align-middle">
+      <h2 className="text-3xl text-gray-500 mt-20 mb-5">Login</h2>
       <form className="login-form" onSubmit={handleLogin}>
-        <div className="field">
-          <div className="control has-icons-left">
-            <input
-              className="input is-primary"
-              type="email"
-              placeholder="Email"
-              onChange={handleChange}
-              name="email"
-              value={email}
-            />
-            <span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faEnvelope} />
-            </span>
-          </div>
+        <div className="bg-gray-100 rounded-lg my-4">
+          <span className="px-5 text-gray-500">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </span>
+          <input
+            className="bg-gray-100 px-3 py-3 rounded-lg"
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            name="email"
+            value={email}
+          />
         </div>
-        <div className="field">
-          <div className="control has-icons-left">
-            <input
-              className="input is-primary"
-              type="password"
-              placeholder="Password"
-              onChange={handleChange}
-              name="password"
-              value={password}
-            />
-            <span className="icon is-small is-left">
-              <FontAwesomeIcon icon={faLock} />
-            </span>
-          </div>
+        <div className="bg-gray-100 rounded-lg my-4">
+          <span className="px-5 text-gray-500">
+            <FontAwesomeIcon icon={faLock} />
+          </span>
+          <input
+            className="bg-gray-100 px-3 py-3 rounded-lg"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            name="password"
+            value={password}
+          />
         </div>
-        {error ? <div className="error-message">Access denied.</div> : <div></div>}
-        <button className="button is-primary">Login</button>
+        {error ? <div className="mb-4 text-red-500 text-center">Access denied.</div> : <div></div>}
+        <button className="w-full bg-green-400 px-3 py-3 rounded-lg text-white">Login</button>
       </form>
     </div>
   );

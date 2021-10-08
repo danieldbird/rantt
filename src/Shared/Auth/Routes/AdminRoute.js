@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext } from '../../Context/AuthContext';
 import firebase from '../Database/Firebase';
 import NotFound from '../../NotFound/NotFound';
 
