@@ -33,6 +33,7 @@ function ListProducts() {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {products.map((product, index) => {
+            const price = product.price / 100;
             return (
               <tr key={index} className={index % 2 && 'bg-gray-50'}>
                 <td className="px-2 py-3 text-left text-sm font-medium text-gray-500">
@@ -42,7 +43,7 @@ function ListProducts() {
                   <img src={product.image_url} alt="product" className="w-12" />
                 </td>
                 <td className="px-2 py-3 text-left text-sm font-medium text-gray-500">
-                  $ {Number(product.price).toFixed(2)}
+                  $ {price.toFixed(2)}
                 </td>
                 <td className="px-2 py-3 text-center text-sm font-medium text-gray-500">
                   {product.quantity}

@@ -15,6 +15,7 @@ import AddProduct from './Backend/Products/AddProduct';
 import ProductsProvider from './Shared/Context/ProductsContext';
 import CartProvider from './Shared/Context/CartContext';
 import Cart from './Frontend/Cart/Cart';
+import Success from './Frontend/Cart/Success';
 
 ReactDOM.render(
   <AuthProvider>
@@ -26,6 +27,7 @@ ReactDOM.render(
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/cart" component={Cart} />
+                <Route exact path="/success" component={Success} />
                 <Route path="/login" component={Login} />
                 <AdminRoute exact path="/admin" component={Admin} />
                 <AdminRoute path="/admin/products" component={ListProducts} />

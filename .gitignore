@@ -33,3 +33,5 @@ notes.md
 .firebase/
 
 /firebase-emulator-data
+
+/functions
